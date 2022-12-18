@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -13,22 +15,23 @@ class HomePageRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
         future: Firebase.initializeApp(
-            options: DefaultFirebaseOptions.currentPlatform),
+          options: DefaultFirebaseOptions.currentPlatform,
+        ),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
               final user = FirebaseAuth.instance.currentUser;
               if (user?.emailVerified ?? false) {
-                print(user);
+                log(user.toString());
                 return const MainUi();
               } else {
-                print(user);
+                log(user.toString());
                 return const RegisterPage();
               }
             default:
-              const CircularProgressIndicator();
+              const Text('Done');
           }
-          return const Text("Done");
+          return const Scaffold(body: CircularProgressIndicator());
         });
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:safeboda/main_ui.dart';
@@ -55,12 +57,12 @@ class _LoginPageState extends State<LoginPage> {
                   try {
                     await FirebaseAuth.instance.signInWithEmailAndPassword(
                         email: _email.text, password: _password.text);
-                    final user = FirebaseAuth.instance.currentUser;
-                    if (user!.emailVerified) {
-                      const MainUi();
-                    }
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                      "/mainUi",
+                      (route) => false,
+                    );
                   } on FirebaseAuthException catch (e) {
-                    print(e.code);
+                    log(e.code.toString());
                   }
                 },
                 child: const Text("Login"),

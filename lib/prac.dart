@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 enum FirstName { fName }
@@ -17,7 +19,7 @@ class _PracState extends State<Prac> {
         appBar: AppBar(
           actions: [
             PopupMenuButton<FirstName>(onSelected: ((value) {
-              print("fooo");
+              log("fooo");
             }), itemBuilder: (BuildContext context) {
               return const [
                 PopupMenuItem(

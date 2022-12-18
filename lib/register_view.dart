@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -55,7 +57,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   await FirebaseAuth.instance.createUserWithEmailAndPassword(
                       email: _email.text, password: _password.text);
                 } on FirebaseAuthException catch (e) {
-                  print(e.code);
+                  log(e.code);
                 }
               },
               child: const Text("Register"),
