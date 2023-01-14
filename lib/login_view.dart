@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:safeboda/main_ui.dart';
+import 'package:safeboda/routes.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -74,8 +75,8 @@ class _LoginPageState extends State<LoginPage> {
                   child: const Text("Not Registered? Register Here")),
               TextButton(
                   onPressed: () {
-                    Navigator.of(context)
-                        .pushNamedAndRemoveUntil('/verify', (route) => false);
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        login.toString(), (route) => false);
                   },
                   child: const Text("verify"))
             ],
